@@ -1,0 +1,10 @@
+pandas
+plotly
+matplotlib
+geopandas
+kml2geojson
+dash==2.11.0
+numpy
+shapely
+cmocean
+gunicorn
