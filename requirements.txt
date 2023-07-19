@@ -8,3 +8,4 @@ numpy
 shapely
 cmocean
 gunicorn
+dash_bootstrap_components
