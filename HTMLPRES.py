@@ -268,8 +268,17 @@ def update_graph(dataframe_value, column_value):
 
         data = df_chosen.to_dict('records')
         columns = [{'name': col, 'id': col} for col in df_chosen.columns]
+        x_axis_mapping = {'Treated': 'Treated Site'}
+        df_chosen['Distance'] = df_chosen['Distance'].replace(x_axis_mapping)
 
         fig = go.Figure(data=[go.Histogram(x=df_chosen['Distance'], y=df_chosen[column_value], histfunc='avg')])
+        fig.update_layout(
+            title='Average ' + column_value + ' for Distances',
+            xaxis_title='Distance',
+            yaxis_title=column_value
+        )
+        x_axis_order = ['Treated Site', 'Adjacent', '< 2 miles', '> 2 miles']
+        fig.update_xaxes(type='category', categoryorder='array', categoryarray=x_axis_order)
 
         return ('',data,columns,fig)
 
