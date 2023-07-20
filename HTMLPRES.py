@@ -160,7 +160,7 @@ server = app.server
 app.layout = dbc.Container([
     html.Header(
         dbc.Row([
-            dbc.Col(html.H1("Geospatial Analysis : Dispersal of Aspergillus Flavus AF36\nStrain in Tree Nut Cropping Systems"), width=12, style={'color': 'dark grey', 'textAlign':'center'}),
+            dbc.Col(html.H1(children=["Geospatial Analysis : Dispersal of ", html.Em("Aspergillus Flavus"),"\nStrains in Tree Nut Cropping Systems"], className="p-5"),width=12, style={'color': 'dark grey', 'textAlign':'center'})
         ]),
         style={'background-color': 'beige', 'padding': '20px'}
     ),
@@ -180,13 +180,14 @@ app.layout = dbc.Container([
             dcc.Graph(id='graph2', figure=fig2),
             html.H4(children='Fall 2022', style={'textAlign':'center'}),
             dcc.Graph(id='graph3', figure=fig3)], width=8, style={'background-color': 'beige', 'border-radius': '5px', 'padding': '10px'}),
-                dbc.Col([dcc.Dropdown(
+        dbc.Col([
+            dcc.Dropdown(
                 id='dataframe-dropdown',
                 options=[
-                    {'label': 'Pre-treatment 2021', 'value': 'gdf_P21'},
-                    {'label': 'Fall 2021', 'value': 'gdf_F21'},
-                    {'label': 'Pre-treatment 2022', 'value': 'gdf_P22'},
-                    {'label': 'Fall 2022', 'value': 'gdf_F22'}
+                    {'label': 'Pre-treatment 2021', 'value': 'bar_P21'},
+                    {'label': 'Fall 2021', 'value': 'bar_F21'},
+                    {'label': 'Pre-treatment 2022', 'value': 'bar_P22'},
+                    {'label': 'Fall 2022', 'value': 'bar_F22'}
                 ],
                 value=None,
                 placeholder='Select a Time Period'
@@ -273,5 +274,5 @@ def update_graph(dataframe_value, column_value):
         return ('',data,columns,fig)
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8024)
+    app.run_server(debug=True, port=8026)
 
